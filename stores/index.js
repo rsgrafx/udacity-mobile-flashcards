@@ -1,0 +1,1 @@
+// Will eventually house logic to access AsyncStorage or Redux

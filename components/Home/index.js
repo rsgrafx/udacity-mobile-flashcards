@@ -7,7 +7,9 @@ export default class Home extends Component {
   render() {
     return(
     <View style={styles.container}>
-      <Text>Base Mobile Flash Cards</Text>
+      <Text>My Stats</Text>
+      <Text> Quizes Taken 10</Text>
+      <Text> Top Score 10/13 </Text>
     </View>
     )
   }
