@@ -1,5 +1,10 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "sdkVersion": "21.0.0",
+    "name": "Mobile Flash Cards - Udacity Final Project",
+    "privacy": "public",
+    "slug": "mobile-flashcards-udacity-orion-engleton@gmail.com",
+    "description": "This is the final project for Udacity - React Js Nano Degree.",
+    "version": "0.0.1"
   }
 }
