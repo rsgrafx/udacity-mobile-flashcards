@@ -15,6 +15,7 @@ import QuizDeck from './components/Deck'
 import StartQuiz from './components/Deck/QuizQuestion'
 
 import {belizeBlue} from './styles/colors'
+import {setup, APP_STORAGE_KEY} from './stores'
 
 /*
   ReArrange Later.
@@ -58,6 +59,9 @@ const MainNavigation = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentWillMount() {
+    setup()
+  }
   render() {
     return <MainNavigation />
   }
