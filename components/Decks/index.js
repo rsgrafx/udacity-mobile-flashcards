@@ -10,7 +10,6 @@ import styles from './styles'
 import {belizeBlue} from '../../styles/colors'
 import {APP_STORAGE_KEY} from '../../stores'
 
-
 const DeckList = ({items, actionOnItem}) => {
   return(
     <FlatList

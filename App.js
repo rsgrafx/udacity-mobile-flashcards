@@ -11,8 +11,8 @@ import {StackNavigator, TabNavigator} from 'react-navigation'
 
 import Home from './components/Home'
 import Decks from './components/Decks'
-import QuizDeck from './components/Deck'
-import StartQuiz from './components/Deck/QuizQuestion'
+import Deck from './components/Deck'
+import StartQuiz from './components/StartQuiz'
 
 import {belizeBlue} from './styles/colors'
 import {setup, APP_STORAGE_KEY} from './stores'
@@ -48,10 +48,10 @@ const MainNavigation = StackNavigator({
   },
   Quiz: {
     path: ':key',
-    screen: QuizDeck,
+    screen: Deck,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
   },
-  QuizQuestion: {
+  StartQuiz: {
     path: ':key',
     screen: StartQuiz,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})

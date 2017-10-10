@@ -5,16 +5,6 @@ import FlipCard from 'react-native-flip-card'
 
 import styles from  './styles'
 
-const questions = [
-  {title: "First Question?"},
-  {title: "Second Question?"},
-  {title: "Third Question?"}
-]
-
-const QuizComplete = (props) => {
-  return <View><Text>Quiz Completed</Text></View>
-}
-
 export default class QuizQuestion extends Component {
   constructor(props) {
     super(props)
@@ -28,6 +18,7 @@ export default class QuizQuestion extends Component {
   }
 
   changeQuestion(idx) {
+      const {questions} = this.props
       this.setState((previousState) => {
         if (previousState.question_idx >= (questions.length-1)) {
           return {
@@ -45,6 +36,7 @@ export default class QuizQuestion extends Component {
   }
 
   flipForAnswer(idx, val) {
+    const {questions} = this.props
     const complete = (this.state.question_idx === questions.length-1)
     if (val === 'correct') {
       this.setState({flip: !this.state.flip, answer: val, complete})
@@ -64,6 +56,7 @@ export default class QuizQuestion extends Component {
   }
 
   render() {
+    const {questions} = this.props
     return(
       <View style={[styles.questionContainer, styles.container]}>
         <View style={{flex: 2, justifyContent: 'center', alignContent: 'center'}}>
