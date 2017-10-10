@@ -4,23 +4,27 @@ import {
   Text,
   FlatList,
   Image,
+  AsyncStorage,
   TouchableHighlight} from 'react-native'
 import styles from './styles'
 import {belizeBlue} from '../../styles/colors'
+import {APP_STORAGE_KEY} from '../../stores'
 
-const temporaryDecks = [
-  {name: 'Programming Languages', questionCount: 10, key: 'programming'},
-  {name: 'Self Help', questionCount: 2, key: 'self_help'},
-  {name: 'Geography', questionCount: 4, key: 'geography'},
-  {name: 'Smart Phones', questionCount: 3, key: 'smartphones'},
-  {name: 'Random Celebs', questionCount: 31, key: 'celebs'},
-  {name: 'Board Games', questionCount: 7, key: 'board-games'},
-  {name: 'Gluten Free', questionCount: 14, key: 'gluten-free' },
-  {name: 'Moms', questionCount: 14, key: 'parenting'}
-]
+
+const DeckList = ({items, actionOnItem}) => {
+  return(
+    <FlatList
+      data={items}
+      keyExtractor={(item) => item.name}
+      renderItem={actionOnItem}
+  />
+  )
+}
 
 export default class Decks extends Component {
-
+  state = {
+    decks: []
+  }
   navigateTo = ({key, name}) => {
     const {navigate} = this.props.navigation
     navigate('Quiz', {key: `${key}`, name})
@@ -36,18 +40,24 @@ export default class Decks extends Component {
     )
   }
 
+  componentWillMount() {
+    AsyncStorage.getItem(APP_STORAGE_KEY)
+      .then((resp) => {
+        const {decks} = JSON.parse(resp)
+        this.setState({decks})
+      })
+      .catch(err => (null))
+  }
+
   render() {
     return(
       <View style={{flex: 1}}>
         <View style={styles.quizHeader}>
           <Text style={styles.quizHeaderText}>Quizes</Text>
         </View>
-        <FlatList
-          data={temporaryDecks}
-          keyExtractor={(item) => item.name}
-          renderItem={this.renderItem}
-        />
+        <DeckList items={this.state.decks} actionOnItem={this.renderItem}/>
       </View>
     )
   }
 }
+
