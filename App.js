@@ -13,6 +13,7 @@ import Home from './components/Home'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import StartQuiz from './components/StartQuiz'
+import AddCard from './components/AddCard'
 
 import {belizeBlue} from './styles/colors'
 import {setup, APP_STORAGE_KEY} from './stores'
@@ -55,6 +56,10 @@ const MainNavigation = StackNavigator({
     path: ':key',
     screen: StartQuiz,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name} Deck`})
   }
 })
 
