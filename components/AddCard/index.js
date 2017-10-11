@@ -21,7 +21,6 @@ class AddCard extends Component {
       answerA: null,
       answerB: null
     }
-    console.log(this.props)
     this.submitForm.bind(this)
     this.update.bind(this)
   }

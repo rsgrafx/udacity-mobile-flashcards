@@ -53,15 +53,15 @@ const MainNavigation = StackNavigator({
   Main: {
     screen: Tabs,
     path: 'home',
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       title: "Brains++",
       headerRight: <Button
-        onPress={() => (console.log("Add Deck"))}
+        onPress={() => (navigation.navigate('AddDeck'))}
         title="New Deck"
         color="blue"
         accesibilityLabel="Add new Quiz Deck"
         />
-    }
+    }),
   },
   Quiz: {
     screen: Deck,

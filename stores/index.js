@@ -58,3 +58,24 @@ export function saveQuestion(obj) {
     })
     .catch(err => console.log(err))
 }
+
+export function storeDeck(obj) {
+  AsyncStorage.getItem(APP_STORAGE_KEY)
+    .then((resp) => {
+      const data = JSON.parse(resp)
+
+      const newData = {
+        questions: data.questions,
+        decks: [...data.decks, {...obj, questionCount: 0}]
+      }
+      AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+    })
+    .catch(err => console.log(err))
+}
+
+export function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
