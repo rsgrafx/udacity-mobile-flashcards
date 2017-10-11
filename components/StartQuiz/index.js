@@ -14,7 +14,7 @@ export default class StartQuiz extends Component {
     AsyncStorage.getItem(APP_STORAGE_KEY)
       .then((resp) => {
         const data = JSON.parse(resp)
-        this.setState({questions: data.questions.programming, loaded: true})
+        this.setState({questions: data.questions[key], loaded: true})
       })
       .catch(err => console.log({err}))
   }

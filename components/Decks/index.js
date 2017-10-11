@@ -15,8 +15,7 @@ const DeckList = ({items, actionOnItem}) => {
     <FlatList
       data={items}
       keyExtractor={(item) => item.name}
-      renderItem={actionOnItem}
-  />
+      renderItem={actionOnItem} />
   )
 }
 

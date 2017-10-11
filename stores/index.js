@@ -35,3 +35,26 @@ export function setup() {
       }
     ).catch(err => (console.log(err)))
 }
+
+export function saveQuestion(obj) {
+  AsyncStorage.getItem(APP_STORAGE_KEY)
+    .then((resp) => {
+      const {title, quizKey, answerA, answerB} = obj
+
+      const data = JSON.parse(resp)
+      const quizQuestions = data.questions[obj.quizKey] || []
+
+      const newQuestionSet = [...quizQuestions, {
+          title, answers: [
+            {hint: answerA, correct: true}, {hint: answerB, correct: false}
+          ]
+        }
+      ]
+      const newData = {
+        decks: data.decks,
+        questions: {...data.questions, [obj.quizKey]: newQuestionSet }
+      }
+      AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+    })
+    .catch(err => console.log(err))
+}
