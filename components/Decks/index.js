@@ -5,7 +5,9 @@ import {
   FlatList,
   Image,
   AsyncStorage,
-  TouchableHighlight} from 'react-native'
+  TouchableHighlight
+} from 'react-native'
+
 import styles from './styles'
 import {belizeBlue} from '../../styles/colors'
 import {APP_STORAGE_KEY} from '../../stores'
@@ -20,10 +22,15 @@ const DeckList = ({items, actionOnItem}) => {
 }
 
 export default class Decks extends Component {
-  state = {
-    decks: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      decks: []
+    }
+    this.navigateTo.bind(this)
   }
-  navigateTo = ({key, name}) => {
+
+  navigateTo({key, name}) {
     const {navigate} = this.props.navigation
     navigate('Quiz', {key: `${key}`, name})
   }
@@ -32,7 +39,7 @@ export default class Decks extends Component {
     return (
       <TouchableHighlight
         style={styles.deckItem}
-        onPress={() => this.navigateTo(item)}>
+        onPress={() => {this.navigateTo(item)} }>
         <Text style={styles.deckItemText}>{item.name}</Text>
       </TouchableHighlight>
     )

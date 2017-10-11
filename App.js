@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  Button,
   Text,
   View,
   Image
@@ -14,6 +15,7 @@ import Decks from './components/Decks'
 import Deck from './components/Deck'
 import StartQuiz from './components/StartQuiz'
 import AddCard from './components/AddCard'
+import AddDeck from './components/AddDeck'
 
 import {belizeBlue} from './styles/colors'
 import {setup, APP_STORAGE_KEY} from './stores'
@@ -26,6 +28,7 @@ const Tabs = TabNavigator({
     screen: Decks,
     navigationOptions: {
       tabBarLabel: 'Decks',
+      headerTintColor: 'blue',
       tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
     }
   },
@@ -33,10 +36,13 @@ const Tabs = TabNavigator({
     screen: Home,
     navigationOptions: {
       tabBarLabel: 'Stats',
+      headerTintColor: 'blue',
       tabBarIcon: ({tintColor}) => <Ionicons name='ios-home' size={30} color={tintColor} />
     }
   }
-}, {
+},
+{
+  initialRouteName: 'Decks',
   tabBarOptions: {
     activeTintColor: '#2980b9'
   }
@@ -45,22 +51,37 @@ const Tabs = TabNavigator({
 
 const MainNavigation = StackNavigator({
   Main: {
-    screen: Tabs
+    screen: Tabs,
+    path: 'home',
+    navigationOptions: {
+      title: "Brains++",
+      headerRight: <Button
+        onPress={() => (console.log("Add Deck"))}
+        title="New Deck"
+        color="blue"
+        accesibilityLabel="Add new Quiz Deck"
+        />
+    }
   },
   Quiz: {
-    path: ':key',
     screen: Deck,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
   },
   StartQuiz: {
-    path: ':key',
     screen: StartQuiz,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
   },
   AddCard: {
     screen: AddCard,
     navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name} Deck`})
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: ({navigation}) => ({title: `New Deck`})
   }
+},
+{
+  initialRouteParams: {key: 'home'}
 })
 
 export default class App extends React.Component {
