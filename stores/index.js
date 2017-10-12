@@ -1,18 +1,12 @@
 // Will eventually house logic to access AsyncStorage or Redux
 
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage, Alert} from 'react-native'
 
 export const APP_STORAGE_KEY = '@mobileflashcards'
 
 const temporaryDecks = [
   {name: 'Languages', questionCount: 10, key: 'programming'},
   {name: 'Self Help', questionCount: 2, key: 'self_help'},
-  {name: 'Geography', questionCount: 4, key: 'geography'},
-  {name: 'Smart Phones', questionCount: 3, key: 'smartphones'},
-  {name: 'Random Celebs', questionCount: 31, key: 'celebs'},
-  {name: 'Board Games', questionCount: 7, key: 'board-games'},
-  {name: 'Gluten Free', questionCount: 14, key: 'gluten-free' },
-  {name: 'Moms', questionCount: 14, key: 'parenting'}
 ]
 
 const baseQuestions = {
@@ -24,6 +18,7 @@ const baseQuestions = {
 }
 
 export function setup() {
+    // AsyncStorage.clear()
     AsyncStorage.getItem(APP_STORAGE_KEY)
       .then(
       (resp) => {
@@ -55,8 +50,9 @@ export function saveQuestion(obj) {
         questions: {...data.questions, [obj.quizKey]: newQuestionSet }
       }
       AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+      Alert.alert('Question Saved', 'Question successfully saved to Deck.')
     })
-    .catch(err => console.log(err))
+    .catch(err => Alert.alert('Error', `Deck Unsuccesful ${err}`))
 }
 
 export function storeDeck(obj) {
@@ -69,8 +65,11 @@ export function storeDeck(obj) {
         decks: [...data.decks, {...obj, questionCount: 0}]
       }
       AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+      Alert.alert('Deck Saved', 'Deck successfully saved to Device.')
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      Alert.alert('Error', `Deck Unsuccesful ${err}`)
+    })
 }
 
 export function uuidv4() {

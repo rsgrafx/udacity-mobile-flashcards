@@ -46,12 +46,16 @@ export default class Decks extends Component {
   }
 
   componentWillMount() {
+    this.rehydrate()
+  }
+
+  rehydrate() {
     AsyncStorage.getItem(APP_STORAGE_KEY)
-      .then((resp) => {
-        const {decks} = JSON.parse(resp)
-        this.setState({decks})
-      })
-      .catch(err => (null))
+    .then((resp) => {
+      const {decks} = JSON.parse(resp)
+      this.setState({decks})
+    })
+    .catch(err => (null))
   }
 
   render() {

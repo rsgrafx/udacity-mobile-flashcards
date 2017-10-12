@@ -4,9 +4,8 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
-import {NavigationActions}  from 'react-navigation'
 
 import styles from './style'
 import {saveQuestion} from '../../stores'

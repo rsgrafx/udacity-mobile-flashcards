@@ -44,17 +44,18 @@ export default class Deck extends Component {
     questions: [],
     loaded: false
   }
+
   navigateTo = ({key, name}) => {
     const {navigate} = this.props.navigation
     navigate('StartQuiz', {key, name})
   }
 
   addCardFlow = ({key, name}) => {
-    const {navigate} =this.props.navigation
+    const {navigate} = this.props.navigation
     navigate('AddCard', {key, name})
   }
 
-  componentWillMount() {
+  reHydrateDeck() {
     const {key} = this.props.navigation.state.params
     AsyncStorage.getItem(APP_STORAGE_KEY)
     .then((resp) => {
@@ -65,6 +66,10 @@ export default class Deck extends Component {
         })
     })
     .catch(err => (console.log(err)))
+  }
+
+  componentWillMount() {
+    this.reHydrateDeck()
   }
 
   render() {
