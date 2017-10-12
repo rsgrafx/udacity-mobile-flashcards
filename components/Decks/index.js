@@ -2,31 +2,18 @@ import React, {Component} from 'react'
 import {
   View,
   Text,
-  FlatList,
   Image,
-  AsyncStorage,
   TouchableHighlight
 } from 'react-native'
 
 import styles from './styles'
 import {belizeBlue} from '../../styles/colors'
-import {APP_STORAGE_KEY} from '../../stores'
-
-const DeckList = ({items, actionOnItem}) => {
-  return(
-    <FlatList
-      data={items}
-      keyExtractor={(item) => item.name}
-      renderItem={actionOnItem} />
-  )
-}
+import {loadDecks} from '../../stores/actions'
+import DeckList from './DeckList'
 
 export default class Decks extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      decks: []
-    }
     this.navigateTo.bind(this)
   }
 
@@ -46,16 +33,7 @@ export default class Decks extends Component {
   }
 
   componentWillMount() {
-    this.rehydrate()
-  }
-
-  rehydrate() {
-    AsyncStorage.getItem(APP_STORAGE_KEY)
-    .then((resp) => {
-      const {decks} = JSON.parse(resp)
-      this.setState({decks})
-    })
-    .catch(err => (null))
+    loadDecks()
   }
 
   render() {
@@ -64,7 +42,7 @@ export default class Decks extends Component {
         <View style={styles.quizHeader}>
           <Text style={styles.quizHeaderText}>Quizes</Text>
         </View>
-        <DeckList items={this.state.decks} actionOnItem={this.renderItem}/>
+        <DeckList actionOnItem={this.renderItem}/>
       </View>
     )
   }

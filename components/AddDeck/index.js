@@ -6,7 +6,8 @@ import {
   TouchableOpacity
 } from 'react-native'
 import styles from './style'
-import {storeDeck, uuidv4} from '../../stores'
+import {uuidv4} from '../../stores'
+import {addDecktoStore} from '../../stores/actions'
 
 export default class AddDeck extends Component {
 
@@ -22,7 +23,7 @@ export default class AddDeck extends Component {
   }
 
   submitForm(nav) {
-    storeDeck(this.state)
+    addDecktoStore(this.state)
     nav.navigate('AddCard', {name: this.state.name, key: this.state.key})
   }
 

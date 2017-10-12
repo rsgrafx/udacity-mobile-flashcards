@@ -1,0 +1,10 @@
+const Do = {
+  ADD_DECK: 'ADD_DECK',
+  ADD_QUESTION: 'ADD_QUESTION',
+  QUESTIONS: 'QUESTIONS',
+  DECKS: 'DECKS',
+  SCORES: 'SCORES',
+  QUIZ_SCORE: 'QUIZ_SCORE',
+}
+
+export default Do

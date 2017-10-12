@@ -20,6 +20,9 @@ import AddDeck from './components/AddDeck'
 import {belizeBlue} from './styles/colors'
 import {setup, APP_STORAGE_KEY} from './stores'
 
+import {Provider} from 'react-redux'
+import store from './stores/store'
+
 /*
   ReArrange Later.
 */
@@ -89,6 +92,10 @@ export default class App extends React.Component {
     setup()
   }
   render() {
-    return <MainNavigation />
+    return (
+      <Provider store={store}>
+        <MainNavigation />
+      </ Provider>
+     )
   }
 }
