@@ -55,6 +55,37 @@ export default class QuizQuestion extends Component {
     this.props.navigation.dispatch(resetAction)
   }
 
+  backToDecks() {
+    return(
+    <View>
+      <Text>Quiz Completed</Text>
+      <TouchableHighlight
+        style={styles.button}
+        onPress={() => {this.returnToDecks()} }>
+        <Text>Will Do Another One</Text>
+        </TouchableHighlight>
+    </View>)
+  }
+
+  nextQuestion() {
+    return(
+    <TouchableHighlight
+      style={styles.button}
+      onPress={() => {this.changeQuestion(this.state.question_idx)} }>
+      <Text>Next Question</Text>
+    </TouchableHighlight>)
+  }
+
+  answerQuestion(answerStatus, hint, additionalStyles={}) {
+    return(
+      <TouchableHighlight
+      style={[styles.button, additionalStyles]}
+      onPress={() => {this.flipForAnswer(this.state.question_idx, answerStatus)} }>
+      <Text style={{fontSize: 18}}>{hint}</Text>
+    </TouchableHighlight>
+    )
+  }
+
   render() {
     const {questions} = this.props
     return(
@@ -64,24 +95,16 @@ export default class QuizQuestion extends Component {
             alignHeight={true}
             perspective={1000}
             clickable={false}
-            style={{flex: 1, borderRadius: 5, borderColor: '#2980b9'}}>
+            style={{flex: 1, borderRadius: 5, borderColor: '#2980b9', padding: 10}}>
             <View style={{flex: 1}}>
-              <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+
+              <View style={{flex: 2, alignItems: 'center', justifyContent: 'center', padding: 5}}>
                 <Text style={{fontSize: 30}}>{questions[this.state.question_idx].title}</Text>
               </View>
 
               <View style={{flex: 1}}>
-                <TouchableHighlight
-                  style={styles.button}
-                  onPress={() => {this.flipForAnswer(this.state.question_idx, 'correct')} }>
-                  <Text>Answer One</Text>
-                </TouchableHighlight>
-
-                <TouchableHighlight
-                  style={[styles.button, {backgroundColor: 'red'}]}
-                  onPress={() => {this.flipForAnswer(this.state.question_idx, 'wrong')} }>
-                  <Text>Answer Two</Text>
-                </TouchableHighlight>
+                {this.answerQuestion('correct', 'Answer A')}
+                {this.answerQuestion('wrong', 'Answer B', {backgroundColor: 'red'})}
               </View>
             </View>
             <View style={{flex: 1}}>
@@ -89,42 +112,19 @@ export default class QuizQuestion extends Component {
                 ? <View style={styles.flex1centered}>
                     <Text style={{fontSize: 30}}>Correct!</Text>
                     { this.state.complete
-                      ? <View>
-                          <TouchableHighlight
-                            style={styles.button}
-                            onPress={() => {this.returnToDecks()} }>
-                            <Text>Do Another One</Text>
-                            </TouchableHighlight>
-                          <Text>Quiz Completed</Text>
-                        </View>
-                      : <TouchableHighlight
-                          style={styles.button}
-                          onPress={() => {this.changeQuestion(this.state.question_idx)} }>
-                          <Text>Next Question</Text>
-                        </TouchableHighlight>
+                      ? this.backToDecks()
+                      : this.nextQuestion()
                     }
 
                   </View>
                 : <View style={styles.flex1centered}>
-                    <Text>InCorrect</Text>
+                    <Text style={{fontSize: 30}}>InCorrect</Text>
                     { this.state.complete
-                      ? <View>
-                          <TouchableHighlight
-                            style={styles.button}
-                            onPress={() => {this.returnToDecks()} }>
-                            <Text>Do Another One</Text>
-                            </TouchableHighlight>
-                          <Text>Quiz Completed</Text>
-                        </View>
-                      : <TouchableHighlight
-                          style={styles.button}
-                          onPress={() => {this.changeQuestion(this.state.question_idx)} }>
-                          <Text>Next Question</Text>
-                        </TouchableHighlight>
+                      ? this.backToDecks()
+                      : this.nextQuestion()
                     }
                   </View>
               }
-
             </View>
           </FlipCard>
         </View>

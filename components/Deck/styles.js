@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     ...centered
   },
   button: {
+    alignItems: 'center',
     marginTop: 30,
     paddingTop: 6,
     paddingBottom: 6,
