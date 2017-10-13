@@ -57,7 +57,7 @@ export default class AddDeck extends Component {
           <TouchableOpacity
             onPress={() => {this.submitForm(this.props.navigation) }}
             style={styles.btn}>
-              <Text style={styles.btnText}>Submit</Text>
+              <Text style={styles.btnText}>Create Deck</Text>
           </TouchableOpacity>
         </View>
       </View>

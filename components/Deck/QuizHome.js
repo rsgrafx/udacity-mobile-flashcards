@@ -12,7 +12,7 @@ const QuizHome = ({addCardFlow, navigateTo, navigation, qCount}) => {
             <TouchableHighlight
               style={{padding: 20, backgroundColor: 'red'}}
               onPress={() => addCardFlow(navigation.state.params)}>
-              <Text>Add Card</Text>
+              <Text>Create New Question</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={{padding: 20, backgroundColor: 'lightblue'}}
