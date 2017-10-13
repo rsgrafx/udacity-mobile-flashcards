@@ -1,49 +1,13 @@
 import React, {Component} from 'react'
-import {
-  ActivityIndicator,
-  AsyncStorage,
-  View,
-  Text,
-  TouchableHighlight
-} from 'react-native'
-import styles from  './styles'
-import {APP_STORAGE_KEY} from '../../stores'
+import {View, Text} from 'react-native'
+import {getQuestions} from '../../stores/actions'
+import QuizHome from './QuizHome'
+import {connect} from 'react-redux'
+/*
+  Turn into Stateless component.
+*/
 
-const QuizHome = ({addCardFlow, navigateTo, navigation, questions}) => {
-  return(
-    <View style={styles.container}>
-      {
-        (questions === undefined || questions.length === 0)
-        ? <View>
-            <Text>Lets Add Some Cards</Text>
-            <TouchableHighlight
-              style={{padding: 20, backgroundColor: 'red'}}
-              onPress={() => addCardFlow(navigation.state.params)}>
-              <Text>Add Card</Text>
-            </TouchableHighlight>
-          </View>
-        : <View style={styles.container}>
-            <TouchableHighlight
-              style={{padding: 20, backgroundColor: 'red'}}
-              onPress={() => addCardFlow(navigation.state.params)}>
-              <Text>Add Card</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={{padding: 20, backgroundColor: 'lightblue'}}
-              onPress={() => navigateTo(navigation.state.params)}>
-              <Text>Start Quiz</Text>
-            </TouchableHighlight>
-          </View>
-      }
-    </View>
-  )
-}
-
-export default class Deck extends Component {
-  state = {
-    questions: [],
-    loaded: false
-  }
+class Deck extends Component {
 
   navigateTo = ({key, name}) => {
     const {navigate} = this.props.navigation
@@ -55,45 +19,31 @@ export default class Deck extends Component {
     navigate('AddCard', {key, name})
   }
 
-  reHydrateDeck() {
-    const {key} = this.props.navigation.state.params
-    AsyncStorage.getItem(APP_STORAGE_KEY)
-    .then((resp) => {
-      const {questions} = data = JSON.parse(resp)
-        this.setState({
-          questions: data.questions[key],
-          loaded: true
-        })
-    })
-    .catch(err => (console.log(err)))
-  }
-
   componentWillMount() {
-    this.reHydrateDeck()
+    const {key} = this.props.navigation.state.params
+    getQuestions(key)
   }
 
   render() {
     return(
       <View style={{flex: 1}}>
-      {
-        (this.state.loaded === false)
-        ? <View>
-            <Text>Here?</Text>
-            <ActivityIndicator
-              animating={true}
-              color="white"
-              size="large"
-              style={{margin: 20}} />
-            </View>
-        : <QuizHome
-            questions={this.state.questions}
-            navigateTo={this.navigateTo}
-            addCardFlow={this.addCardFlow}
-            navigation={this.props.navigation}
-            />
-      }
+        <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{fontSize: 25}}>{this.props.navigation.state.params.name}</Text>
+          <Text style={{fontWeight: 'bold'}}>{this.props.questions.length} {
+            this.props.questions.length === 1
+            ? 'Question'
+            : 'Questions'
+            }</Text>
+        </View>
+        <QuizHome
+          navigateTo={this.navigateTo}
+          addCardFlow={this.addCardFlow}
+          navigation={this.props.navigation} />
       </View>
-
     )
   }
 }
+
+export default connect((state) => ({
+  questions: state.questions
+}))(Deck)

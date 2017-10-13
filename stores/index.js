@@ -1,12 +1,14 @@
 // Will eventually house logic to access AsyncStorage or Redux
 
 import {AsyncStorage, Alert} from 'react-native'
+import store from './store'
+import {updateQuestions, updateDecks} from './actions'
 
 export const APP_STORAGE_KEY = '@mobileflashcards'
 
 const temporaryDecks = [
-  {name: 'Languages', questionCount: 10, key: 'programming'},
-  {name: 'Self Help', questionCount: 2, key: 'self_help'},
+  {name: 'Languages', questionCount: 3, key: 'programming', description: "Questions about languages, programming languages mostly"},
+  {name: 'Self Help', questionCount: 0, key: 'self_help', description: "Questions about Self Help"}
 ]
 
 const baseQuestions = {
@@ -17,13 +19,33 @@ const baseQuestions = {
     ]
 }
 
+function  _storeData(data) {
+  AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(data))
+}
+
+function _updateDeck(data, quizKey) {
+  const [deck] = data.decks.filter((item) => item.key === quizKey)
+  return {...deck, questionCount: deck.questionCount+1}
+
+}
+
+function _updateDecks(data, quizKey) {
+  const deck = _updateDeck(data, quizKey)
+  const decks = [...data.decks.filter((item) => item.key !== quizKey), deck]
+  updateDecks(decks)
+  return decks
+}
+
+// *
 export function setup() {
     // AsyncStorage.clear()
     AsyncStorage.getItem(APP_STORAGE_KEY)
       .then(
       (resp) => {
+        console.log("RESPONSER", JSON.parse(resp))
         if (resp === null) {
-          AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify({questions: baseQuestions, decks: temporaryDecks}) )
+          const datum = {questions: baseQuestions, decks: temporaryDecks}
+          _storeData(datum)
         } else {
           return resp
         }
@@ -37,22 +59,27 @@ export function saveQuestion(obj) {
       const {title, quizKey, answerA, answerB} = obj
 
       const data = JSON.parse(resp)
-      const quizQuestions = data.questions[obj.quizKey] || []
+      const quizQuestions = data.questions[quizKey] || []
+      const newQuestionSet = _newQuestionSet(quizQuestions, title, answerA, answerB)
 
-      const newQuestionSet = [...quizQuestions, {
-          title, answers: [
-            {hint: answerA, correct: true}, {hint: answerB, correct: false}
-          ]
-        }
-      ]
       const newData = {
-        decks: data.decks,
+        decks: _updateDecks(data, quizKey),
         questions: {...data.questions, [obj.quizKey]: newQuestionSet }
       }
-      AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+      updateQuestions(newQuestionSet)
+      _storeData(newData)
       Alert.alert('Question Saved', 'Question successfully saved to Deck.')
     })
     .catch(err => Alert.alert('Error', `Deck Unsuccesful ${err}`))
+}
+
+function _newQuestionSet(current, title, answerA, answerB) {
+  return [...current, {
+    title, answers: [
+      {hint: answerA, correct: true}, {hint: answerB, correct: false}
+    ]
+  }
+]
 }
 
 export function storeDeck(obj) {
@@ -64,7 +91,7 @@ export function storeDeck(obj) {
         questions: data.questions,
         decks: [...data.decks, {...obj, questionCount: 0}]
       }
-      AsyncStorage.setItem(APP_STORAGE_KEY, JSON.stringify(newData))
+      _storeData(newData)
       Alert.alert('Deck Saved', 'Deck successfully saved to Device.')
     })
     .catch(err => {

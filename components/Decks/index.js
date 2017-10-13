@@ -8,7 +8,9 @@ import {
 
 import styles from './styles'
 import {belizeBlue} from '../../styles/colors'
-import {loadDecks} from '../../stores/actions'
+import {
+  loadDecks,
+} from '../../stores/actions'
 import DeckList from './DeckList'
 
 export default class Decks extends Component {
@@ -27,7 +29,14 @@ export default class Decks extends Component {
       <TouchableHighlight
         style={styles.deckItem}
         onPress={() => {this.navigateTo(item)} }>
-        <Text style={styles.deckItemText}>{item.name}</Text>
+        <View style={{flexDirection: 'row'}}>
+          <View style={{flex: 6}}>
+            <Text style={styles.deckItemText}>{item.name}</Text>
+          </View>
+          <View style={{flex: 1, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}}>
+            <Text> {item.questionCount} </Text>
+          </View>
+        </View>
       </TouchableHighlight>
     )
   }

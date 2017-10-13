@@ -16,6 +16,7 @@ export default class AddDeck extends Component {
     this.state = {
       name: null,
       description: null,
+      questionCount: 0,
       key: uuidv4()
     }
     this.submitForm.bind(this)
