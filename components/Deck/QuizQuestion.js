@@ -58,15 +58,18 @@ export default class QuizQuestion extends Component {
   render() {
     const {questions} = this.props
     return(
-      <View style={[styles.questionContainer, styles.container]}>
-        <View style={{flex: 2, justifyContent: 'center', alignContent: 'center'}}>
+        <View style={{flex: 1, alignSelf: 'stretch', backgroundColor: '#B3E5FC'}}>
           <FlipCard
             flip={this.state.flip}
             alignHeight={true}
             perspective={1000}
-            style={styles.card}>
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{fontSize: 30}}>{questions[this.state.question_idx].title}</Text>
+            clickable={false}
+            style={{flex: 1, borderRadius: 5, borderColor: '#2980b9'}}>
+            <View style={{flex: 1}}>
+              <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={{fontSize: 30}}>{questions[this.state.question_idx].title}</Text>
+              </View>
+
               <View style={{flex: 1}}>
                 <TouchableHighlight
                   style={styles.button}
@@ -81,9 +84,9 @@ export default class QuizQuestion extends Component {
                 </TouchableHighlight>
               </View>
             </View>
-            <View>
+            <View style={{flex: 1}}>
               {(this.state.answer === 'correct')
-                ? <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}} >
+                ? <View style={styles.flex1centered}>
                     <Text style={{fontSize: 30}}>Correct!</Text>
                     { this.state.complete
                       ? <View>
@@ -102,7 +105,7 @@ export default class QuizQuestion extends Component {
                     }
 
                   </View>
-                : <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                : <View style={styles.flex1centered}>
                     <Text>InCorrect</Text>
                     { this.state.complete
                       ? <View>
@@ -125,8 +128,6 @@ export default class QuizQuestion extends Component {
             </View>
           </FlipCard>
         </View>
-
-      </View>
     )
   }
 }

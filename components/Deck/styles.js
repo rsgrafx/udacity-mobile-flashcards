@@ -1,26 +1,30 @@
 import {StyleSheet} from 'react-native'
 
+const centered = {
+  justifyContent: 'center',
+  alignContent: 'center'
+}
+
 const styles = StyleSheet.create({
+  centered,
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
+    ...centered
   },
-  questionContainer: {
-    padding: 10
+  flex1centered: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  cardFace: {
+    justifyContent: 'flex-start',
+    backgroundColor: '#81D4FA'
   },
   button: {
     backgroundColor: 'green',
-    alignContent: 'center',
-    justifyContent: 'center',
     padding: 20,
-    margin: 5
+    margin: 5,
+    ...centered
   },
   cardContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
   },
   welcome: {
     fontSize: 20,
@@ -33,24 +37,12 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  card: {
-    alignItems: 'stretch'
-  },
   face: {
     flex:1,
     backgroundColor: '#2ecc71',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  back: {
-    flex:1,
-    backgroundColor: '#f1c40f',
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...centered
   },
   button: {
-    width: 100,
-    height: 30,
     marginTop: 30,
     paddingTop: 6,
     paddingBottom: 6,

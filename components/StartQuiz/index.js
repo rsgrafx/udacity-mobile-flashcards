@@ -21,7 +21,7 @@ export default class StartQuiz extends Component {
 
   render() {
     return(
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={{flex: 1, alignItems: 'flex-start', padding: 50}}>
       {
         this.state.loaded
         ? <QuizQuestion
