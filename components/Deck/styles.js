@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
     flex: 1,
     ...centered
   },
-  flex1centered: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  flex1centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   cardFace: {
     justifyContent: 'flex-start',
     backgroundColor: '#81D4FA'

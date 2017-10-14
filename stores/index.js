@@ -13,9 +13,13 @@ const temporaryDecks = [
 
 const baseQuestions = {
     programming: [
-      {title: "Is Udacity a Google Company?", answers: {correct: true, incorrect: false} },
-      {title: "Do you have to be Over 18 to take a class?", answers: {correct: false, incorrect: true}},
-      {title: "Will Udacity if yuo dont complete the class?", answers: {correct: false, incorrect: true}}
+      {title: "Is Udacity a Google Company?",
+        answers: [{correct: false, hint: "No Amazon"}, {hint: "I think so", correct: true}]},
+      {title: "Do you have to be Over 18 to take a class?",
+        answers: [{correct: false, hint: "Yes"}, {hint: "No", correct: true}]},
+      {title: "Udacity will reimburce you if you complete the ReactJS course.",
+        answers: [{hint: "Hell No", correct: true},
+        {hint: "Gladly", correct: false}]}
     ]
 }
 
@@ -60,7 +64,7 @@ export function saveQuestion(obj) {
 
       const data = JSON.parse(resp)
       const quizQuestions = data.questions[quizKey] || []
-      const newQuestionSet = _newQuestionSet(quizQuestions, title, answerA, answerB)
+      const newQuestionSet = _newQuestion(quizQuestions, title, answerA, answerB)
 
       const newData = {
         decks: _updateDecks(data, quizKey),
@@ -73,13 +77,13 @@ export function saveQuestion(obj) {
     .catch(err => Alert.alert('Error', `Deck Unsuccesful ${err}`))
 }
 
-function _newQuestionSet(current, title, answerA, answerB) {
+function _newQuestion(current, title, answerA, answerB) {
   return [...current, {
     title, answers: [
       {hint: answerA, correct: true}, {hint: answerB, correct: false}
-    ]
-  }
-]
+      ]
+    }
+  ]
 }
 
 export function storeDeck(obj) {
@@ -95,7 +99,7 @@ export function storeDeck(obj) {
       Alert.alert('Deck Saved', 'Deck successfully saved to Device.')
     })
     .catch(err => {
-      Alert.alert('Error', `Deck Unsuccesful ${err}`)
+      Alert.alert('Unsuccesful Save', `Error Code: ${err}`)
     })
 }
 

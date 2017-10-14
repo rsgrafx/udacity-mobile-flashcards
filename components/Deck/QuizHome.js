@@ -3,7 +3,8 @@ import {View, TouchableHighlight, Text} from 'react-native'
 import {connect} from 'react-redux'
 import styles  from  './styles'
 
-const QuizHome = ({addCardFlow, navigateTo, navigation, qCount}) => {
+const QuizHome = ({addCardFlow, navigateTo, navigation, qCount, resetQuiz}) => {
+  resetQuiz()
   return(
     <View style={styles.container}>
       {
@@ -37,4 +38,8 @@ const mapStateToProps = state => ({
   qCount: state.questions.length
 })
 
-export default connect(mapStateToProps, null)(QuizHome)
+export default connect(mapStateToProps, (dispatch) => (
+  {resetQuiz() {
+    dispatch({type: 'RESET_QUIZ'})
+  }}
+))(QuizHome)

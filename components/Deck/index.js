@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text} from 'react-native'
-import {getQuestions} from '../../stores/actions'
+import {getQuestions, updateQuizScore, setupQuizScore} from '../../stores/actions'
 import QuizHome from './QuizHome'
 import {connect} from 'react-redux'
 /*
@@ -21,6 +21,7 @@ class Deck extends Component {
 
   componentWillMount() {
     const {key} = this.props.navigation.state.params
+    this.props.setupQuiz(key, this.props.questions.length)
     getQuestions(key)
   }
 
@@ -46,4 +47,7 @@ class Deck extends Component {
 
 export default connect((state) => ({
   questions: state.questions
-}))(Deck)
+  }), (dispatch) => ({
+    setupQuiz(quizKey, count) {dispatch(setupQuizScore(quizKey, count))}
+  })
+)(Deck)

@@ -6,6 +6,9 @@ const Do = {
   DECKS: 'DECKS',
   SCORES: 'SCORES',
   QUIZ_SCORE: 'QUIZ_SCORE',
+  CORRECT_ANSWER: 'CORRECT_ANSWER',
+  SETUP_QUIZ: 'SETUP_QUIZ',
+  RESET_QUIZ: 'RESET_QUIZ'
 }
 
 export default Do

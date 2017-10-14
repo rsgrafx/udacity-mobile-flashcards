@@ -10,6 +10,26 @@ export const updateQuestions = (questions) => {
   })
 }
 
+
+export const updateQuizScore = (quizKey) => {
+  return {
+    type: Do.CORRECT_ANSWER,
+    payload: {
+      quizKey
+    }
+  }
+}
+
+export const setupQuizScore = (quizKey, qCount) => {
+  return {
+    type: Do.SETUP_QUIZ,
+    payload: {
+      quizKey,
+      qCount
+    }
+  }
+}
+
 export const addDecktoStore = (deck) => {
   storeDeck(deck)
   addDeck(deck)

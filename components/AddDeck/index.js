@@ -25,7 +25,7 @@ export default class AddDeck extends Component {
 
   submitForm(nav) {
     addDecktoStore(this.state)
-    nav.navigate('AddCard', {name: this.state.name, key: this.state.key})
+    nav.goBack()
   }
 
   update(key, value) {
