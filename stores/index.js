@@ -1,25 +1,68 @@
 // Will eventually house logic to access AsyncStorage or Redux
+/*
+  *
+  Find the Calm to refactor - https://www.youtube.com/watch?v=u2OpgFeNr9s
+  *
+*/
 
-import {AsyncStorage, Alert} from 'react-native'
-import store from './store'
-import {updateQuestions, updateDecks} from './actions'
+import { AsyncStorage, Alert } from 'react-native';
+import { updateQuestions, updateDecks } from './actions';
 
-export const APP_STORAGE_KEY = '@mobileflashcards'
+export const APP_STORAGE_KEY = '@mobileflashcards';
 
 const temporaryDecks = [
-  {name: 'Languages', questionCount: 3, key: 'programming', description: "Questions about languages, programming languages mostly"},
-  {name: 'Self Help', questionCount: 0, key: 'self_help', description: "Questions about Self Help"}
-]
+  {
+    name: 'Languages',
+    questionCount: 3,
+    key: 'programming',
+    description: 'Questions about languages, programming languages mostly'
+  },
+  {
+    name: 'Sciences',
+    questionCount: 4,
+    key: 'sciences',
+    description: 'Questions about languages, programming languages mostly'
+  },
+  {
+    name: 'Self Help',
+    questionCount: 0,
+    key: 'self_help',
+    description: 'Questions about Self Help'
+  }
+];
 
 const baseQuestions = {
     programming: [
-      {title: "Is Udacity a Google Company?",
-        answers: [{correct: false, hint: "No Amazon"}, {hint: "I think so", correct: true}]},
-      {title: "Do you have to be Over 18 to take a class?",
-        answers: [{correct: false, hint: "Yes"}, {hint: "No", correct: true}]},
-      {title: "Udacity will reimburce you if you complete the ReactJS course.",
-        answers: [{hint: "Hell No", correct: true},
-        {hint: "Gladly", correct: false}]}
+      {
+        title: 'Is Udacity a Google Company?',
+        answers: [
+          { correct: false, hint: 'No Amazon' },
+          { hint: 'I think so', correct: true }]
+        },
+      {
+        title: 'Do you have to be Over 18 to take a class?',
+        answers: [
+          { correct: false, hint: 'Yes' },
+          { hint: 'No', correct: true }]
+        },
+      {
+        title: 'Udacity will reimburce you if you complete the ReactJS course.',
+        answers: [
+          { hint: 'Hell No', correct: true },
+          { hint: 'Gladly', correct: false }]
+        }
+    ],
+    sciences: [
+      {title: 'Is MedTech a Medicene Company?',
+        answers: [{correct: false, hint: 'No Amazon'}, {hint: 'I think so', correct: true}]},
+      {title: 'Is Birth Control a  class?',
+        answers: [{correct: false, hint: 'Yes'}, {hint: 'No', correct: true}]},
+      {title: 'How is Biology?.',
+        answers: [{hint: 'Hell No', correct: true},
+        {hint: 'Gladly', correct: false}]},
+      {title: 'Describe the Peanut.',
+        answers: [{hint: 'Hell No', correct: true},
+        {hint: 'Gladly', correct: false}]}
     ]
 }
 
@@ -46,7 +89,6 @@ export function setup() {
     AsyncStorage.getItem(APP_STORAGE_KEY)
       .then(
       (resp) => {
-        console.log("RESPONSER", JSON.parse(resp))
         if (resp === null) {
           const datum = {questions: baseQuestions, decks: temporaryDecks}
           _storeData(datum)
