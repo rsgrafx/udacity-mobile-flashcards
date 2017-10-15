@@ -1,27 +1,19 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Button,
-  Text,
-  View,
-  Image
-} from 'react-native';
+import { Button } from 'react-native';
 
-import {FontAwesome, Ionicons} from '@expo/vector-icons'
-import {StackNavigator, TabNavigator} from 'react-navigation'
+import { Ionicons } from '@expo/vector-icons';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
 
-import Home from './components/Home'
-import Decks from './components/Decks'
-import Deck from './components/Deck'
-import StartQuiz from './components/StartQuiz'
-import AddCard from './components/AddCard'
-import AddDeck from './components/AddDeck'
+import Home from './components/Home';
+import Decks from './components/Decks';
+import Deck from './components/Deck';
+import StartQuiz from './components/StartQuiz';
+import AddCard from './components/AddCard';
+import AddDeck from './components/AddDeck';
 
-import {belizeBlue} from './styles/colors'
-import {setup, APP_STORAGE_KEY} from './stores'
-
-import {Provider} from 'react-redux'
-import store from './stores/store'
+import { setup } from './stores';
+import store from './stores/store';
 
 /*
   ReArrange Later.
@@ -32,7 +24,7 @@ const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Decks',
       headerTintColor: 'blue',
-      tabBarIcon: ({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={ 30} color={ tintColor} />
     }
   },
   Home: {
@@ -40,7 +32,7 @@ const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'Stats',
       headerTintColor: 'blue',
-      tabBarIcon: ({tintColor}) => <Ionicons name='ios-home' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-home' size={30} color={tintColor} />
     }
   }
 },
@@ -50,50 +42,50 @@ const Tabs = TabNavigator({
     activeTintColor: '#2980b9'
   }
 }
-)
+);
 
 const MainNavigation = StackNavigator({
   Main: {
     screen: Tabs,
     path: 'home',
-    navigationOptions: ({navigation}) => ({
-      title: "Brains++",
+    navigationOptions: ({ navigation }) => ({
+      title: 'Brains++',
       headerRight: <Button
-        onPress={() => (navigation.navigate('AddDeck'))}
-        title="New Deck"
-        color="blue"
-        accesibilityLabel="Add new Quiz Deck"
-        />
+                    onPress={() => (navigation.navigate('AddDeck'))}
+                    title="New Deck"
+                    color="blue"
+                    accesibilityLabel="Add new Quiz Deck"
+      />
     }),
   },
   Quiz: {
     screen: Deck,
-    navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
+    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name}`})
   },
   StartQuiz: {
     screen: StartQuiz,
-    navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name}`})
+    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name}`})
   },
   AddCard: {
     screen: AddCard,
-    navigationOptions: ({navigation}) => ({title: `${navigation.state.params.name} Deck`})
+    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name} Deck`})
   },
   AddDeck: {
     screen: AddDeck,
-    navigationOptions: ({navigation}) => ({title: `New Deck`})
+    navigationOptions: ({ navigation }) => ({ title: `New Deck`})
   }
 },
 {
-  initialRouteParams: {key: 'home'}
-})
+  initialRouteParams: { key: 'home' }
+});
 
 export default class App extends React.Component {
   componentWillMount() {
-    setup()
+    setup();
   }
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={ store}>
         <MainNavigation />
       </ Provider>
      )
