@@ -28,7 +28,7 @@ class QuizQuestion extends Component {
     }
   }
 
-  changeQuestion(idx) {
+  changeQuestion() {
       const { questions } = this.props;
       this.setState((previousState) => {
         if (previousState.question_idx >= (questions.length - 1)) {
@@ -98,7 +98,7 @@ class QuizQuestion extends Component {
     return (
     <TouchableHighlight
       style={styles.button}
-      onPress={() => { this.changeQuestion(this.state.question_idx); }}
+      onPress={() => { this.changeQuestion(); }}
     >
       <Text>Next Question</Text>
     </TouchableHighlight>
