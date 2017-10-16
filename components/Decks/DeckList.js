@@ -14,6 +14,6 @@ const DeckList = ({ items, actionOnItem }) => {
 
 const mapStateToProps = state => (
   { items: state.decks }
-)
+);
 
 export default connect(mapStateToProps, null)(DeckList);

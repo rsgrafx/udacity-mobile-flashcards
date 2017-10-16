@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const fetchQuiz = (decks, key) => {
   const [deck] = decks.filter((item) => (item.key === key));
   return deck;
-}
+};
 
 const Score = ({ items, qCount, score, quiz }) => {
   return (
@@ -20,6 +20,4 @@ const Score = ({ items, qCount, score, quiz }) => {
   );
 };
 
-export default connect((state) => ({
-  items: state.decks,
-}))(Score);
+export default connect(state => ({ items: state.decks }))(Score);

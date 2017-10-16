@@ -11,6 +11,6 @@ const Do = {
   RESET_QUIZ: 'RESET_QUIZ',
   QUESTION_INDEX: 'QUESTION_INDEX',
   STORE_SCORE: 'STORE_SCORE'
-}
+};
 
-export default Do
+export default Do;

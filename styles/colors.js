@@ -1,1 +1,1 @@
-export const belizeBlue = '#2980b9'
+export const belizeBlue = '#2980b9';

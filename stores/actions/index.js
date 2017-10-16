@@ -16,7 +16,7 @@ export const updateQuizScore = (qIndex) => {
     payload: {
       qIndex
     }
-  }
+  };
 }
 
 export const setupQuizScore = (quizKey) => {
@@ -25,22 +25,22 @@ export const setupQuizScore = (quizKey) => {
     payload: {
       quizKey
     }
-  }
+  };
 }
 
 export const addDecktoStore = (deck) => {
   storeDeck(deck);
   addDeck(deck);
-}
+};
 
 export const loadDecks = () => {
   AsyncStorage.getItem(APP_STORAGE_KEY)
   .then((resp) => {
-    const { decks } = JSON.parse(resp)
+    const { decks } = JSON.parse(resp);
     updateDecks(decks);
   })
   .catch(err => (err));
-}
+};
 
 export const updateDecks = (decks) => {
   store.dispatch({
@@ -54,7 +54,7 @@ export const addDeck = (deck) => {
     type: Do.ADD_DECK,
     payload: deck
   });
-}
+};
 
 export function getQuestions(key) {
   AsyncStorage.getItem(APP_STORAGE_KEY)
@@ -66,4 +66,4 @@ export function getQuestions(key) {
     });
   })
   .catch(err => (console.log(err)));
-}
+};
