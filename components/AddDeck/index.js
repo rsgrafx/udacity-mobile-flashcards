@@ -6,7 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import styles from './style';
-import { uuidv4 } from '../../stores';
+import { uuidv4 } from '../../utils/helpers';
 import { addDecktoStore } from '../../stores/actions';
 
 export default class AddDeck extends Component {

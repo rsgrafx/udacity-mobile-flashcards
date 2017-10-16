@@ -10,23 +10,19 @@ export const updateQuestions = (questions) => {
   });
 };
 
-export const updateQuizScore = (qIndex) => {
-  return {
+export const updateQuizScore = (qIndex) => ({
     type: Do.CORRECT_ANSWER,
     payload: {
       qIndex
     }
-  };
-}
+  });
 
-export const setupQuizScore = (quizKey) => {
-  return {
+export const setupQuizScore = (quizKey) => ({
     type: Do.SETUP_QUIZ,
     payload: {
       quizKey
     }
-  };
-}
+  });
 
 export const addDecktoStore = (deck) => {
   storeDeck(deck);
