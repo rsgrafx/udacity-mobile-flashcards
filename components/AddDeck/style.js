@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   btn: {
@@ -13,11 +13,18 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   standard: {
-    flex: 1, justifyContent: 'center', alignItems: 'center'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   container: {
     flex: 1
-  }
-})
+  },
+  textBox:
+    { height: 40,
+      borderBottomColor: 'grey',
+      borderWidth: 1
+    }
+});
 
-export default styles
+export default styles;
