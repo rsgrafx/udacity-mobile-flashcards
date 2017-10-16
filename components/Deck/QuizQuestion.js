@@ -5,6 +5,7 @@ import FlipCard from 'react-native-flip-card';
 import { connect } from 'react-redux';
 
 import { updateQuizScore } from '../../stores/actions';
+import { correctSoundFX, wrongSoundFX } from '../../assets';
 import styles from './styles';
 
 class QuizQuestion extends Component {
@@ -59,8 +60,10 @@ class QuizQuestion extends Component {
 
     this.props.answerQuestion(payload);
     if (val === 'correct') {
+      correctSoundFX()
       this.setState({ flip: !this.state.flip, answer: val, complete });
     } else {
+      wrongSoundFX()
       this.setState({ flip: !this.state.flip, complete });
     }
   }
@@ -111,8 +114,9 @@ class QuizQuestion extends Component {
       <TouchableHighlight
         key={hint}
         style={[styles.button, additionalStyles]}
-        onPress={() => {this.flipForAnswer(this.state.question_idx, correct)} }>
-        <Text style={{fontSize: 18}}>{hint}</Text>
+        onPress={() => { this.flipForAnswer(this.state.question_idx, correct); }}
+      >
+       <Text style={{ fontSize: 18 }}>{hint}</Text>
       </TouchableHighlight>
     );
   }

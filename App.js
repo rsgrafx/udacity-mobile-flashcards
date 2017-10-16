@@ -14,6 +14,7 @@ import AddDeck from './components/AddDeck';
 
 import { setup } from './stores';
 import store from './stores/store';
+import { setLocalNotification } from './utils/helpers';
 
 /*
   ReArrange Later.
@@ -81,13 +82,14 @@ const MainNavigation = StackNavigator({
 
 export default class App extends React.Component {
   componentWillMount() {
+    setLocalNotification();
     setup();
   }
   render() {
     return (
-      <Provider store={ store}>
+      <Provider store={store}>
         <MainNavigation />
       </ Provider>
-     )
+     );
   }
 }
