@@ -37,8 +37,8 @@ export default class Decks extends Component {
           <View style={{ flex: 6 }}>
             <Text style={styles.deckItemText}>{item.name}</Text>
           </View>
-          <View style={{flex: 1, backgroundColor: 'red', justifyContent: 'center', alignItems: 'center'}}>
-            <Text> {item.questionCount} </Text>
+          <View style={[styles.container, styles.qCount]}>
+            <Text style={styles.qCountText}> {item.questionCount} </Text>
           </View>
         </View>
       </TouchableHighlight>

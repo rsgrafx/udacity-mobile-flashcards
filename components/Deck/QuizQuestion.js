@@ -60,10 +60,10 @@ class QuizQuestion extends Component {
 
     this.props.answerQuestion(payload);
     if (val === 'correct') {
-      correctSoundFX()
+      correctSoundFX();
       this.setState({ flip: !this.state.flip, answer: val, complete });
     } else {
-      wrongSoundFX()
+      wrongSoundFX();
       this.setState({ flip: !this.state.flip, complete });
     }
   }
@@ -74,7 +74,7 @@ class QuizQuestion extends Component {
       qCount,
       qIndex,
       value
-    }
+    };
   }
 
   returnToDecks() {
@@ -90,25 +90,26 @@ class QuizQuestion extends Component {
   backToDecks() {
     return (
       <TouchableHighlight
-        style={styles.button}
-        onPress={() => {this.returnToDecks()} }>
-        <Text>Try Another Quiz</Text>
+        style={[styles.answerBtn, { backgroundColor: '#e67e22', marginTop: 20 }]}
+        onPress={() => {this.returnToDecks(); }}
+      >
+        <Text style={styles.answerQuestionTxt}>Try Another Quiz</Text>
       </TouchableHighlight>
     );
   }
 
   nextQuestion() {
     return (
-    <TouchableHighlight
-      style={styles.button}
-      onPress={() => { this.changeQuestion(); }}
-    >
-      <Text>Next Question</Text>
-    </TouchableHighlight>
+      <TouchableHighlight
+        style={[styles.button, styles.answerBtn]}
+        onPress={() => { this.changeQuestion(); }}
+      >
+        <Text style={styles.answerQuestionTxt}> Next Question</Text>
+      </TouchableHighlight>
     );
   }
 
-  answerQuestion(answerStatus, hint, additionalStyles={}) {
+  answerQuestion(answerStatus, hint, additionalStyles = {}) {
     const correct = answerStatus ? 'correct' : 'wrong';
     return (
       <TouchableHighlight
@@ -116,13 +117,13 @@ class QuizQuestion extends Component {
         style={[styles.button, additionalStyles]}
         onPress={() => { this.flipForAnswer(this.state.question_idx, correct); }}
       >
-       <Text style={{ fontSize: 18 }}>{hint}</Text>
+       <Text style={styles.answerQuestionTxt}>{hint}</Text>
       </TouchableHighlight>
     );
   }
 
   remainingQuestions(qlength, idx) {
-    const count = qlength - idx
+    const count = qlength - idx;
     return (
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
         {count === 1 ? <Text>Final Question</Text> : <Text>{count} Remaining</Text> }
@@ -133,23 +134,25 @@ class QuizQuestion extends Component {
   retryQuiz() {
     return (
       <TouchableHighlight
-        style={[styles.button, {backgroundColor: 'red'}]}
+        style={[styles.answerBtn, { backgroundColor: '#3498db' }]}
         onPress={() => {
-          this.props.resetQuiz()
+          this.props.resetQuiz();
           this.props.retryQuizReset(this.props.navigation.state.params.key)
-          this.props.navigation.goBack()}
-          }
+          this.props.navigation.goBack();
+          }}
         >
-        <Text>Retry Quiz</Text>
+        <Text style={styles.answerQuestionTxt}>Retry Quiz</Text>
       </TouchableHighlight>
     );
   }
 
   finalCard() {
     return (
-     <View>
-      <Text>Quiz Completed</Text>
-      <Text>{this.props.quizScore.score} / {this.props.questions.length }</Text>
+     <View style={{alignContent: 'flex-end'}}>
+      <View style={{alignItems: 'center', padding: 20 }}>
+        <Text>Quiz Complete!</Text>
+        <Text style={{fontSize: 15, fontWeight: 'bold'}}>Score: {this.props.quizScore.score} / {this.props.questions.length }</Text>
+      </View>
       {this.retryQuiz()}
       {this.backToDecks()}
     </View>
@@ -160,38 +163,38 @@ class QuizQuestion extends Component {
     const { questions } = this.props;
     const question = questions[this.state.question_idx];
     return (
-        <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#B3E5FC' }}>
+        <View style={styles.flipCardStyle}>
           <FlipCard
             flip={this.state.flip}
             alignHeight
             perspective={1000}
             clickable={false}
-            style={{ flex: 1, borderRadius: 5, borderColor: '#2980b9', padding: 10 }}
+            style={styles.flipCard}
           >
-            <View style={{ flex: 1 }}>
-              <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', padding: 5 }}>
-                <Text style={{ fontSize: 30 }}>{question.title}</Text>
+            <View style={styles.flipCardStyle}>
+              <View style={styles.cardDetail}>
+                <Text style={{ fontSize: 30, fontFamily: 'Avenir' }}>{question.title}</Text>
               </View>
-
-              <View style={{ flex: 1 }}>
-                {question.answers.map((answer) =>
-                  this.answerQuestion(answer.correct, answer.hint))
+               {question.answers.map((answer) =>
+                  this.answerQuestion(answer.correct, answer.hint, styles.answerBtn))
                 }
-              </View>
-              {this.remainingQuestions(questions.length, this.state.question_idx)}
+               {this.remainingQuestions(questions.length, this.state.question_idx)}
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={styles.flipCardStyle}>
               {(this.state.answer === 'correct')
-                ? <View style={styles.flex1centered}>
-                    <Text style={{ fontSize: 30 }}>Correct!</Text>
+                ? <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                    <View style={styles.flex1centered}>
+                      <Text style={{ fontSize: 30 }}>Correct!</Text>
+                    </View>
                     { this.state.complete
                       ? this.finalCard()
                       : this.nextQuestion()
                     }
-
                   </View>
-                : <View style={styles.flex1centered}>
-                    <Text style={{fontSize: 30}}>InCorrect</Text>
+                : <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                    <View style={styles.flex1centered}>
+                      <Text style={{ fontSize: 30 }}>Sorry Wrong Answer</Text>
+                    </View>
                     { this.state.complete
                       ? this.finalCard()
                       : this.nextQuestion()

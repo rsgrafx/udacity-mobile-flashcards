@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import { getQuestions } from '../../stores/actions';
@@ -31,7 +31,12 @@ class Deck extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ fontSize: 25 }}>{navigation.state.params.name}</Text>
+            <Text style={{ fontSize: 25 }}>Test Your Brain</Text>
+            <Image
+              style={{ width: 100, height: 100, marginTop: 10 }}
+              source={require('../../assets/images/brain.png')}
+            />
+          <Text style={{ fontSize: 35, paddingTop: 20 }}>{navigation.state.params.name}</Text>
           <Text style={{ fontWeight: 'bold' }}>{count} {
             count === 1
             ? 'Question'

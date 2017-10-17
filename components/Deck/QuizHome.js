@@ -21,24 +21,34 @@ class QuizHome extends Component {
           (qCount > 0)
           ? <View style={styles.container}>
               <TouchableHighlight
-                style={{ padding: 20, backgroundColor: 'red' }}
-                onPress={() => addCardFlow(navigation.state.params)}>
-                <Text>Create New Question</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={{ padding: 20, backgroundColor: 'lightblue' }}
-                onPress={() => navigateTo(navigation.state.params)}
-              >
-                <Text>Start Quiz</Text>
-              </TouchableHighlight>
-            </View>
-          : <View>
-              <Text>Lets Add Some Cards</Text>
-              <TouchableHighlight
-                style={{ padding: 20, backgroundColor: 'red' }}
+                style={styles.createCardBtn}
                 onPress={() => addCardFlow(navigation.state.params)}
               >
-                <Text>Add Card</Text>
+                <Text style={styles.createCardBtnTxt}>Create New Question</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={[styles.createCardBtn, { backgroundColor: '#2980b9' }]}
+                onPress={() => navigateTo(navigation.state.params)}
+              >
+                <Text style={styles.createCardBtnTxt}>
+                  Start Quiz
+                </Text>
+              </TouchableHighlight>
+            </View>
+          : <View style={[styles.container, { alignItems: 'stretch' }]}>
+              <View style={{padding: 20, alignItems: 'center'}}>
+                <Text style={{fontFamily: 'Avenir', fontSize: 20}}>
+                  Lets Add Some Cards
+                </Text>
+              </View>
+
+              <TouchableHighlight
+                style={styles.createCardBtn}
+                onPress={() => addCardFlow(navigation.state.params)}
+              >
+                <Text style={styles.createCardBtnTxt}>
+                  Create New Question
+                </Text>
               </TouchableHighlight>
             </View>
         }
