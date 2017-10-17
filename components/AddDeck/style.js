@@ -1,16 +1,36 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  inputLabel: {
+    fontFamily: 'Avenir',
+    color: '#d35400'
+  },
+  headerLabel: {
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#2980b9'
+  },
   btn: {
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#34495e',
-    borderRadius: 3,
-    padding: 20,
+    backgroundColor: '#2980b9',
+    borderRadius: 10,
+    padding: 15,
   },
   btnText: {
     color: 'white',
-    fontSize: 15
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Avenir'
+  },
+  textBoxInput: {
+    height: 40,
+  },
+  textBox: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    marginBottom: 20
   },
   standard: {
     flex: 1,
@@ -18,13 +38,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    flex: 1
-  },
-  textBox:
-    { height: 40,
-      borderBottomColor: 'grey',
-      borderWidth: 1
-    }
+    flex: 1,
+    margin: 10
+  }
 });
 
 export default styles;

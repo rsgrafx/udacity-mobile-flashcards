@@ -21,18 +21,18 @@ class QuizHome extends Component {
           (qCount > 0)
           ? <View style={styles.container}>
               <TouchableHighlight
-                style={styles.createCardBtn}
-                onPress={() => addCardFlow(navigation.state.params)}
-              >
-                <Text style={styles.createCardBtnTxt}>Create New Question</Text>
-              </TouchableHighlight>
-              <TouchableHighlight
                 style={[styles.createCardBtn, { backgroundColor: '#2980b9' }]}
                 onPress={() => navigateTo(navigation.state.params)}
               >
                 <Text style={styles.createCardBtnTxt}>
                   Start Quiz
                 </Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.createCardBtn}
+                onPress={() => addCardFlow(navigation.state.params)}
+              >
+                <Text style={styles.createCardBtnTxt}>Create New Question</Text>
               </TouchableHighlight>
             </View>
           : <View style={[styles.container, { alignItems: 'stretch' }]}>

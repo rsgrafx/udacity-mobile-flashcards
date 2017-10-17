@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { StackNavigator, TabNavigator } from 'react-navigation';
@@ -19,6 +19,7 @@ import { setLocalNotification } from './utils/helpers';
 /*
   ReArrange Later.
 */
+
 const Tabs = TabNavigator({
   Decks: {
     screen: Decks,
@@ -51,12 +52,15 @@ const MainNavigation = StackNavigator({
     path: 'home',
     navigationOptions: ({ navigation }) => ({
       title: 'Brains++',
-      headerRight: <Button
-                    onPress={() => (navigation.navigate('AddDeck'))}
-                    title="New Deck"
-                    color="blue"
-                    accesibilityLabel="Add new Quiz Deck"
-      />
+      headerRight: <TouchableWithoutFeedback
+                      onPress={() => (navigation.navigate('AddDeck'))}
+                    >
+                      <View
+                      style={{width: 40, height: 30}}
+                      accesibilityLabel="Add new Quiz Deck">
+                        <Ionicons name='ios-add-circle' size={30} color={'#2980b9'} />
+                      </View>
+                    </TouchableWithoutFeedback>
     }),
   },
   Quiz: {

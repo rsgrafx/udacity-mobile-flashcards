@@ -49,22 +49,28 @@ export default class AddDeck extends Component {
         contentContainerStyle={styles.container}
       >
           <View style={styles.standard}>
-            <Text>Add New Deck</Text>
+            <Text style={styles.headerLabel}>Add New Deck</Text>
           </View>
           <View style={{ flex: 2, padding: 10 }}>
             <View>
-              <Text>Title:</Text>
-              <TextInput
-                onChangeText={(value) => {this.update('name', value)}}
-                style={styles.textBox}
-                value={this.state.title} />
+              <Text style={styles.inputLabel}>Title:</Text>
+              <View style={styles.textBox}>
+                <TextInput
+                  placeholder={"Title of Quiz."}
+                  onChangeText={(value) => {this.update('name', value)}}
+                  style={styles.textBoxInput}
+                  value={this.state.title} />
+              </View>
             </View>
             <View>
-              <Text>Description:</Text>
-              <TextInput
-                onChangeText={(value) => {this.update('description', value)}}
-                style={{height: 40, borderBottomColor: 'grey', borderWidth: 1}}
-                value={this.state.description} />
+              <Text style={styles.inputLabel}>Description:</Text>
+              <View style={styles.textBox}>
+                <TextInput
+                  placeholder={"Quiz description"}
+                  onChangeText={(value) => {this.update('description', value)}}
+                  style={styles.textBoxInput}
+                  value={this.state.description} />
+              </View>
             </View>
             <View style={{flex: 1, padding: 10}}>
               <TouchableOpacity

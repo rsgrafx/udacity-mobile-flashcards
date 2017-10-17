@@ -9,14 +9,13 @@ const fetchQuiz = (decks, key) => {
 };
 
 const Score = ({ items, qCount, score, quiz }) => (
-    <View style={styles.scoreItem}>
-      <View style={{flex: 4, justifyContent: 'center'}}>
-       <Text style={[styles.scoreText, { paddingLeft: 10 }]}>
+    <View style={[styles.scoreItem, {}]}>
+      <View style={styles.scoreQuizName}>
+       <Text style={[styles.scoreText, { paddingLeft: 10, color: '#8e44ad' }]}>
           { fetchQuiz(items, quiz).name }
         </Text>
       </View>
-      <View style={[{ flex: 1 }, styles.center1]}>
-        <Text>Score:</Text>
+      <View style={styles.center1}>
         <Text style={styles.scoreText}>
           {score} / {qCount}
         </Text>

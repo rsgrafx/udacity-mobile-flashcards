@@ -31,17 +31,17 @@ class Deck extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 25 }}>Test Your Brain</Text>
+            <Text style={{ fontSize: 25, fontFamily: 'Avenir' }}>Strengthen Your Brain!</Text>
             <Image
               style={{ width: 100, height: 100, marginTop: 10 }}
               source={require('../../assets/images/brain.png')}
             />
-          <Text style={{ fontSize: 35, paddingTop: 20 }}>{navigation.state.params.name}</Text>
-          <Text style={{ fontWeight: 'bold' }}>{count} {
+          <Text style={{ fontSize: 45, paddingTop: 20, color: '#e74c3c', fontWeight: 'bold', fontFamily: 'Avenir' }}>{navigation.state.params.name}</Text>
+          <Text style={{ fontWeight: 'bold', paddingTop: 10 }}>{count} {
             count === 1
             ? 'Question'
             : 'Questions'
-            }</Text>
+            } Available</Text>
         </View>
         <QuizHome
           qCount={count}

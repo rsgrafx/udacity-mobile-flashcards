@@ -5,6 +5,17 @@ import { connect } from 'react-redux';
 import Score from './Score';
 import styles from './styles';
 
+const QuizHeader = () => (
+    <View style={styles.scoreHeader}>
+      <View style={{ flex: 4 }}>
+        <Text style={styles.scoreHeaderTxt}>Quiz</Text>
+      </View>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.scoreHeaderTxt}>Score:</Text>
+      </View>
+    </View>
+  );
+
 class Home extends Component {
   noScores = () => (
     <View style={[styles.container, styles.align]}>
@@ -15,14 +26,17 @@ class Home extends Component {
     const { scores, items } = this.props;
     return (
     <View style={styles.container}>
-      <View style={[styles.container, styles.align, { paddingTop: 10 }]}>
-        <Text style={{ fontSize: 28, fontWeight: 'bold' }}> Quiz Stats </Text>
+      <View style={[styles.container, styles.align, { padding: 20 }]}>
+        <Text style={styles.headerLabel}> Quiz Stats </Text>
       </View>
-      <View style={{ flex: 8, alignItems: 'stretch' }}>
+      <View style={styles.scoreList}>
         {
           scores.length === 0
           ? this.noScores()
-          : scores.map((score) => (<Score key={score.quiz} {...score} />))
+          : <View>
+              <QuizHeader />
+              {scores.map((score) => (<Score key={score.quiz} {...score} />))}
+            </View>
         }
       </View>
     </View>

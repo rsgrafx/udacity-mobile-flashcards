@@ -1,21 +1,36 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  inputLabel: {
+    fontFamily: 'Avenir',
+    color: '#d35400'
+  },
+  headerLabel: {
+    fontFamily: 'Avenir',
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#2980b9'
+  },
   btn: {
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#34495e',
-    borderRadius: 3,
-    padding: 20,
+    backgroundColor: '#2980b9',
+    borderRadius: 10,
+    padding: 15,
   },
   btnText: {
     color: 'white',
-    fontSize: 15
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontFamily: 'Avenir'
   },
-  textInput: {
+  textBoxInput: {
     height: 40,
+  },
+  textBox: {
+    borderBottomWidth: 1,
     borderBottomColor: 'grey',
-    borderWidth: 1
+    marginBottom: 20
   },
   answers: {
     flex: 2,
