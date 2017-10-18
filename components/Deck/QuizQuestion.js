@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 import { updateQuizScore } from '../../stores/actions';
 import { correctSoundFX, wrongSoundFX } from '../../assets';
+
+import * as Answer from './Answers';
 import styles from './styles';
 
 class QuizQuestion extends Component {
@@ -165,6 +167,7 @@ class QuizQuestion extends Component {
   render() {
     const { questions } = this.props;
     const question = questions[this.state.question_idx];
+    const [correctAnswer] = question.answers.filter(answ => (answ.correct))
     return (
         <View style={styles.flipCardStyle}>
           <FlipCard
@@ -186,26 +189,14 @@ class QuizQuestion extends Component {
             <View style={styles.flipCardStyle}>
               {(this.state.answer === 'correct')
                 ? <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                    <View style={styles.flex1centered}>
-                      <Image
-                        style={styles.answerImg}
-                        source={require('../../assets/images/correct.png')}
-                      />
-                      <Text style={{ fontSize: 30 }}>Correct!</Text>
-                    </View>
+                    <Answer.Correct />
                     { this.state.complete
                       ? this.finalCard()
                       : this.nextQuestion()
                     }
                   </View>
                 : <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                    <View style={styles.flex1centered}>
-                      <Image
-                        style={styles.answerImg}
-                        source={require('../../assets/images/wrong.png')}
-                      />
-                      <Text style={{ fontSize: 30 }}>Wrong Answer</Text>
-                    </View>
+                    <Answer.Wrong correctAnswer={correctAnswer} />
                     { this.state.complete
                       ? this.finalCard()
                       : this.nextQuestion()

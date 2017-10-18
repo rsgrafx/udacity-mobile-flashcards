@@ -27,11 +27,10 @@ export default class Decks extends Component {
     navigate('Quiz', { key: `${key}`, name });
   }
 
-  renderItem = ({ item, index }) => {
-    return (
+  renderItem = ({ item }) => (
       <TouchableHighlight
         style={styles.deckItem}
-        onPress={() => {this.navigateTo(item)}}
+        onPress={() => { this.navigateTo(item); }}
       >
         <View style={{ flexDirection: 'row' }}>
           <View style={{ flex: 6 }}>
@@ -42,8 +41,7 @@ export default class Decks extends Component {
           </View>
         </View>
       </TouchableHighlight>
-    );
-  }
+  );
 
   render() {
     return (
