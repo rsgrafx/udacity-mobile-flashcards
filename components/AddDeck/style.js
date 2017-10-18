@@ -1,11 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
+
+const borderline = Platform.OS === 'ios'
+? { borderBottomWidth: 1,
+   borderBottomColor: 'grey'
+  }
+: {}
+
 
 const styles = StyleSheet.create({
   inputLabel: {
     color: '#d35400'
   },
   headerLabel: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#2980b9'
   },
@@ -26,8 +33,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textBox: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
+    ...borderline,
     marginBottom: 20
   },
   standard: {

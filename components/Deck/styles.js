@@ -129,12 +129,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  quizHdrTxt: { fontSize: 25,  },
+  quizHdrTxt: {
+    fontSize: 20
+  },
   quizTitleTxt: {
-    fontSize: 45,
+    fontSize: 40,
     paddingTop: 20,
     color: '#e74c3c',
     fontWeight: 'bold',
+    padding: 10
 
   },
   quizTitleImg: {

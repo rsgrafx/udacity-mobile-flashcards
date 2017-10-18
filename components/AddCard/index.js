@@ -29,7 +29,7 @@ class AddCard extends Component {
 
   submitForm(nav) {
     const { title, answerA, answerB } = this.state;
-    if (title === null ||  answerA === null || answerB === null ) {
+    if (title === null || answerA === null || answerB === null ) {
       return Alert.alert('Missing info', 'Please make sure you enter both question and answers');
     }
 
@@ -55,7 +55,7 @@ class AddCard extends Component {
             <Text style={styles.headerLabel}>{this.props.navigation.state.params.name}</Text>
           </View>
           <View style={{ flex: 1, padding: 10 }}>
-            <Text style={[styles.inputLabel, {fontWeight: 'bold'}]}>Your Question:</Text>
+            <Text style={[styles.inputLabel, { fontWeight: 'bold' }]}>Your Question:</Text>
             <View style={styles.textBox} >
               <TextInput
                 placeholder={'Enter Question'}
@@ -79,7 +79,7 @@ class AddCard extends Component {
             <View style={styles.textBox}>
               <TextInput
                 placeholder={'Enter Wrong Answer here.'}
-                onChangeText={(value) => { this.update('answerB', value) }}
+                onChangeText={(value) => { this.update('answerB', value); }}
                 style={styles.textBoxInput}
                 value={this.state.answerB}
               />

@@ -1,4 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
+
+const borderline = Platform.OS === 'ios'
+  ? { borderBottomWidth: 1,
+     borderBottomColor: 'grey'
+    }
+  : {}
 
 const styles = StyleSheet.create({
   inputLabel: {
@@ -25,9 +31,8 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textBox: {
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-    marginBottom: 20
+    marginBottom: 20,
+    ...borderline
   },
   answers: {
     flex: 2,
