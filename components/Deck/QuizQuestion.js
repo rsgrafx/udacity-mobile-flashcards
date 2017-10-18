@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Image, Text, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import FlipCard from 'react-native-flip-card';
 import { connect } from 'react-redux';
@@ -123,10 +123,13 @@ class QuizQuestion extends Component {
   }
 
   remainingQuestions(qlength, idx) {
+    const tStyle = { fontWeight: 'bold', color: 'blue' }
     const count = qlength - idx;
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-        {count === 1 ? <Text>Final Question</Text> : <Text>{count} Remaining</Text> }
+      <View style={styles.questionsLeft}>
+        {count === 1
+          ? <Text style={tStyle}>Final Question</Text>
+          : <Text style={tStyle}>{count} Remaining</Text> }
       </View>
     );
   }
@@ -184,6 +187,10 @@ class QuizQuestion extends Component {
               {(this.state.answer === 'correct')
                 ? <View style={{ flex: 1, justifyContent: 'space-between' }}>
                     <View style={styles.flex1centered}>
+                      <Image
+                        style={styles.answerImg}
+                        source={require('../../assets/images/correct.png')}
+                      />
                       <Text style={{ fontSize: 30 }}>Correct!</Text>
                     </View>
                     { this.state.complete
@@ -193,7 +200,11 @@ class QuizQuestion extends Component {
                   </View>
                 : <View style={{ flex: 1, justifyContent: 'space-between' }}>
                     <View style={styles.flex1centered}>
-                      <Text style={{ fontSize: 30 }}>Sorry Wrong Answer</Text>
+                      <Image
+                        style={styles.answerImg}
+                        source={require('../../assets/images/wrong.png')}
+                      />
+                      <Text style={{ fontSize: 30 }}>Wrong Answer</Text>
                     </View>
                     { this.state.complete
                       ? this.finalCard()

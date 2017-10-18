@@ -5,12 +5,12 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import styles from './styles'
-import { belizeBlue } from '../../styles/colors';
+import styles from './styles';
 import {
   loadDecks,
-} from '../../stores/actions'
-import DeckList from './DeckList'
+} from '../../stores/actions';
+
+import DeckList from './DeckList';
 
 export default class Decks extends Component {
   constructor(props) {
@@ -19,15 +19,15 @@ export default class Decks extends Component {
   }
 
   componentWillMount() {
-    loadDecks()
+    loadDecks();
   }
 
   navigateTo({ key, name }) {
     const { navigate } = this.props.navigation;
-    navigate('Quiz', {key: `${key}`, name })
+    navigate('Quiz', { key: `${key}`, name });
   }
 
-  renderItem = ({item, index}) => {
+  renderItem = ({ item, index }) => {
     return (
       <TouchableHighlight
         style={styles.deckItem}

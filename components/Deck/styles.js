@@ -18,6 +18,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  answerImg: {
+    width: 100,
+    height: 100,
+    marginTop: 10,
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 50
+  },
   centered,
   container: {
     flex: 1,
@@ -93,7 +101,11 @@ const styles = StyleSheet.create({
   img: {
     flex: 1,
     height: 64
-  }
+  },
+  questionsLeft: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5 }
 });
 
 export default styles;

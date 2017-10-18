@@ -14,7 +14,7 @@ class QuizHome extends Component {
   }
 
   render() {
-    const { addCardFlow, navigateTo, navigation, qCount } = this.props
+    const { addCardFlow, navigateTo, navigation, qCount } = this.props;
     return (
       <View style={styles.container}>
         {
