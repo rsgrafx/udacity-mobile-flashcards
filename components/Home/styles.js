@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   headerLabel: {
     fontSize: 30,
     fontWeight: 'bold',
-    fontFamily: 'Avenir',
     color: '#2980b9'
   },
   scoreHeader: {
@@ -13,8 +12,7 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   scoreHeaderTxt: {
-    color: '#34495e',
-    fontFamily: 'Avenir'
+    color: '#34495e'
   },
   scoreList: {
     flex: 8,
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   scoreText: {
-    fontFamily: 'Avenir',
     fontSize: 20,
     color: '#d35400',
     fontWeight: 'bold',

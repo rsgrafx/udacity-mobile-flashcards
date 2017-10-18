@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     padding: 0
   },
   qCountText: {
-    fontFamily: 'Avenir',
     fontWeight: 'bold',
     color: 'white'
   },
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     borderWidth: 1,
     borderColor: '#fff'
-
   },
   deckItemText: {
     color: belizeBlue,
@@ -37,7 +35,6 @@ const styles = StyleSheet.create({
   },
   quizHeaderText: {
     fontWeight: 'bold',
-    fontFamily: 'Avenir',
     fontSize: 30,
     color: belizeBlue
   }

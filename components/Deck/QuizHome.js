@@ -37,7 +37,7 @@ class QuizHome extends Component {
             </View>
           : <View style={[styles.container, { alignItems: 'stretch' }]}>
               <View style={{padding: 20, alignItems: 'center'}}>
-                <Text style={{fontFamily: 'Avenir', fontSize: 20}}>
+                <Text style={{ fontSize: 20 }}>
                   Lets Add Some Cards
                 </Text>
               </View>

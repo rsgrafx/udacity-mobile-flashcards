@@ -180,7 +180,7 @@ class QuizQuestion extends Component {
           >
             <View style={styles.flipCardStyle}>
               <View style={styles.cardDetail}>
-                <Text style={{ fontSize: 30, fontFamily: 'Avenir' }}>{question.title}</Text>
+                <Text style={{ fontSize: 30,  }}>{question.title}</Text>
               </View>
                {question.answers.map((answer) =>
                   this.answerQuestion(answer.correct, answer.hint, styles.answerBtn))

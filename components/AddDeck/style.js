@@ -2,11 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   inputLabel: {
-    fontFamily: 'Avenir',
     color: '#d35400'
   },
   headerLabel: {
-    fontFamily: 'Avenir',
     fontSize: 30,
     fontWeight: 'bold',
     color: '#2980b9'
@@ -22,7 +20,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'Avenir'
+
   },
   textBoxInput: {
     height: 40,

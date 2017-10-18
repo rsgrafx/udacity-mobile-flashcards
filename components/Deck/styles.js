@@ -14,7 +14,6 @@ const baseBtn = {
 
 const styles = StyleSheet.create({
   answerBtn: baseBtn,
-
   backtoDeckBtn: {
     ...baseBtn,
     marginTop: 20,
@@ -130,13 +129,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  quizHdrTxt: { fontSize: 25, fontFamily: 'Avenir' },
+  quizHdrTxt: { fontSize: 25,  },
   quizTitleTxt: {
     fontSize: 45,
     paddingTop: 20,
     color: '#e74c3c',
     fontWeight: 'bold',
-    fontFamily: 'Avenir'
+
   },
   quizTitleImg: {
     width: 100,
