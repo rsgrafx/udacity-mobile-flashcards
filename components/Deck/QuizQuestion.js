@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import FlipCard from 'react-native-flip-card';
 import { connect } from 'react-redux';
@@ -32,33 +32,30 @@ class QuizQuestion extends Component {
   }
 
   changeQuestion() {
-      const { questions } = this.props;
-      this.setState((previousState) => {
-        if (previousState.question_idx >= (questions.length - 1)) {
+    const { questions } = this.props;
+    const minusCnt = questions.length - 1;
+    this.setState((previousState) => {
+          const idx = previousState.question_idx;
+          const flip = this.state.flip;
           return {
-            question_idx: questions.length - 1,
-            flip: !this.state.flip,
+            question_idx: (idx >= minusCnt) ? minusCnt : idx + 1,
+            flip: !flip,
             answer: 'new',
-            complete: true
-          };
-        } else {
-          return { question_idx: previousState.question_idx + 1,
-            flip: !this.state.flip,
-            answer: 'new'
+            complete: (idx >= minusCnt)
           };
         }
-      }
     );
   }
 
   flipForAnswer(idx, val) {
     const { questions } = this.props;
-    const complete = (this.state.question_idx === questions.length-1)
+    const complete = (this.state.question_idx === questions.length - 1)
 
     const payload = this.scorePayload(
       questions.length,
       this.state.question_idx,
-      val);
+      val
+    );
 
     this.props.answerQuestion(payload);
     if (val === 'correct') {
@@ -86,14 +83,14 @@ class QuizQuestion extends Component {
         NavigationActions.navigate({ routeName: 'Main'})
       ]
     });
-    this.props.navigation.dispatch(resetAction)
+    this.props.navigation.dispatch(resetAction);
   }
 
   backToDecks() {
     return (
       <TouchableHighlight
-        style={[styles.answerBtn, { backgroundColor: '#e67e22', marginTop: 20 }]}
-        onPress={() => {this.returnToDecks(); }}
+        style={styles.backtoDeckBtn}
+        onPress={() => { this.returnToDecks(); }}
       >
         <Text style={styles.answerQuestionTxt}>Try Another Quiz</Text>
       </TouchableHighlight>
@@ -117,7 +114,9 @@ class QuizQuestion extends Component {
       <TouchableHighlight
         key={hint}
         style={[styles.button, additionalStyles]}
-        onPress={() => { this.flipForAnswer(this.state.question_idx, correct); }}
+        onPress={() => {
+          this.flipForAnswer(this.state.question_idx, correct);
+          }}
       >
        <Text style={styles.answerQuestionTxt}>{hint}</Text>
       </TouchableHighlight>
@@ -142,21 +141,23 @@ class QuizQuestion extends Component {
         style={[styles.answerBtn, { backgroundColor: '#3498db' }]}
         onPress={() => {
           this.props.resetQuiz();
-          this.props.retryQuizReset(this.props.navigation.state.params.key)
+          this.props.retryQuizReset(this.props.navigation.state.params.key);
           this.props.navigation.goBack();
           }}
-        >
-        <Text style={styles.answerQuestionTxt}>Retry Quiz</Text>
-      </TouchableHighlight>
+      >
+       <Text style={styles.answerQuestionTxt}>Retry Quiz</Text>
+     </TouchableHighlight>
     );
   }
 
   finalCard() {
     return (
-     <View style={{alignContent: 'flex-end'}}>
+     <View style={styles.finalCard}>
       <View style={{alignItems: 'center', padding: 20 }}>
-        <Text>Quiz Complete!</Text>
-        <Text style={{fontSize: 15, fontWeight: 'bold'}}>Score: {this.props.quizScore.score} / {this.props.questions.length }</Text>
+        <Text style={styles.finalCardTxt}>Quiz Complete!</Text>
+        <Text style={[styles.finalCardTxt, { color: 'red' }]}>
+          Score: { this.props.quizScore.score} / {this.props.questions.length }
+        </Text>
       </View>
       {this.retryQuiz()}
       {this.backToDecks()}
@@ -188,14 +189,14 @@ class QuizQuestion extends Component {
             </View>
             <View style={styles.flipCardStyle}>
               {(this.state.answer === 'correct')
-                ? <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                ? <View style={styles.cardSetting}>
                     <Answer.Correct />
                     { this.state.complete
                       ? this.finalCard()
                       : this.nextQuestion()
                     }
                   </View>
-                : <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                : <View style={styles.cardSetting}>
                     <Answer.Wrong correctAnswer={correctAnswer} />
                     { this.state.complete
                       ? this.finalCard()

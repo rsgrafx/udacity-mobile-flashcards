@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { getQuestions } from '../../stores/actions';
 import QuizHome from './QuizHome';
+import QuizTitle from './QuizTitle';
+import styles from './styles';
 
 /*
   Turn into Stateless component.
@@ -30,19 +32,11 @@ class Deck extends Component {
     const { navigation, count } = this.props;
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ fontSize: 25, fontFamily: 'Avenir' }}>Strengthen Your Brain!</Text>
-            <Image
-              style={{ width: 100, height: 100, marginTop: 10 }}
-              source={require('../../assets/images/brain.png')}
-            />
-          <Text style={{ fontSize: 45, paddingTop: 20, color: '#e74c3c', fontWeight: 'bold', fontFamily: 'Avenir' }}>{navigation.state.params.name}</Text>
-          <Text style={{ fontWeight: 'bold', paddingTop: 10 }}>{count} {
-            count === 1
-            ? 'Question'
-            : 'Questions'
-            } Available</Text>
-        </View>
+        <QuizTitle
+          count={count}
+          title={navigation.state.params.name}
+          styles={styles}
+        />
         <QuizHome
           qCount={count}
           navigateTo={this.navigateTo}

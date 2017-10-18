@@ -5,13 +5,21 @@ const centered = {
   alignContent: 'center'
 };
 
+const baseBtn = {
+  height: 60,
+  backgroundColor: '#16a085',
+  borderRadius: 10,
+  ...centered
+ };
+
 const styles = StyleSheet.create({
-  answerBtn: {
-    height: 60,
-    backgroundColor: '#16a085',
-    borderRadius: 10,
-    ...centered
-     },
+  answerBtn: baseBtn,
+
+  backtoDeckBtn: {
+    ...baseBtn,
+    marginTop: 20,
+    backgroundColor: '#e67e22'
+  },
   answerQuestionTxt: {
     fontSize: 18,
     color: '#fff',
@@ -31,6 +39,10 @@ const styles = StyleSheet.create({
     flex: 1,
     ...centered
   },
+  cardSetting: {
+    flex: 1,
+    justifyContent: 'space-between'
+  },
   flipCardStyle: {
     flex: 1,
     alignSelf: 'stretch',
@@ -48,6 +60,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  finalCard: {
+    alignContent: 'flex-end'
+  },
+  finalCardTxt: {
+    fontSize: 25, fontWeight: 'bold'
   },
   cardDetail: {
     flex: 2,
@@ -105,7 +123,26 @@ const styles = StyleSheet.create({
   questionsLeft: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 5 }
+    padding: 5
+  },
+  quizTitleBox: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  quizHdrTxt: { fontSize: 25, fontFamily: 'Avenir' },
+  quizTitleTxt: {
+    fontSize: 45,
+    paddingTop: 20,
+    color: '#e74c3c',
+    fontWeight: 'bold',
+    fontFamily: 'Avenir'
+  },
+  quizTitleImg: {
+    width: 100,
+    height: 100,
+    marginTop: 10
+  },
 });
 
 export default styles;
