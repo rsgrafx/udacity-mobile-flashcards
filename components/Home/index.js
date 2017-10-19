@@ -23,7 +23,7 @@ class Home extends Component {
     </View>
   );
   render() {
-    const { scores, items } = this.props;
+    const { scores } = this.props;
     return (
     <View style={styles.container}>
       <View style={[styles.container, styles.align, { padding: 20 }]}>

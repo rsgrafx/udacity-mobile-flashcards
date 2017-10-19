@@ -36,9 +36,28 @@ export default class AddDeck extends Component {
     nav.goBack();
   }
 
+  /*
+    I know if I move the responsiblity of handling state
+    to Redux I can eliminate this.  But its minor.
+  */
+
   update(key, value) {
     this.setState({ [key]: value });
   }
+
+  Input = (state, title, key, placeholder) => (
+    <View>
+      <Text style={styles.inputLabel}>{title}</Text>
+      <View style={styles.textBox}>
+        <TextInput
+          placeholder={placeholder}
+          onChangeText={(value) => { this.update(key, value); }}
+          style={styles.textBoxInput}
+          value={state.title}
+        />
+      </View>
+    </View>
+  );
 
   render() {
     return (
@@ -52,29 +71,13 @@ export default class AddDeck extends Component {
             <Text style={styles.headerLabel}>Add New Deck</Text>
           </View>
           <View style={{ flex: 2, padding: 10 }}>
-            <View>
-              <Text style={styles.inputLabel}>Title:</Text>
-              <View style={styles.textBox}>
-                <TextInput
-                  placeholder={"Title of Quiz."}
-                  onChangeText={(value) => {this.update('name', value)}}
-                  style={styles.textBoxInput}
-                  value={this.state.title} />
-              </View>
-            </View>
-            <View>
-              <Text style={styles.inputLabel}>Description:</Text>
-              <View style={styles.textBox}>
-                <TextInput
-                  placeholder={"Quiz description"}
-                  onChangeText={(value) => {this.update('description', value)}}
-                  style={styles.textBoxInput}
-                  value={this.state.description} />
-              </View>
-            </View>
-            <View style={{flex: 1, padding: 10}}>
+
+            { this.Input(this.state, 'Title:', 'name', 'Title of Quiz') }
+            { this.Input(this.state, 'Description:', 'description', 'Quiz Description') }
+
+            <View style={{ flex: 1, padding: 10 }}>
               <TouchableOpacity
-                onPress={() => {this.submitForm(this.props.navigation) }}
+                onPress={() => {this.submitForm(this.props.navigation); }}
                 style={styles.btn}>
                   <Text style={styles.btnText}>Create Deck</Text>
               </TouchableOpacity>

@@ -10,7 +10,7 @@ const deck = (state = [], action) => {
   default:
     return state;
   }
-}
+};
 
 const decks = (state = [], action) => {
   switch (action.type) {
@@ -21,7 +21,7 @@ const decks = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const questions = (state = [], action) => {
   switch (action.type) {
@@ -30,7 +30,7 @@ const questions = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const scores = (state = [], action) => {
   switch (action.type) {
@@ -39,18 +39,18 @@ const scores = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const setupQuiz = (payload) => {
   const base = { quiz: null, score: 0, qCount: 0 };
   return { ...base, quiz: payload.quizKey };
-}
+};
 
 const currentQuiz = (state = { quiz: null, score: 0, qCount: 0 }, action) => {
   switch (action.type) {
     case Do.SETUP_QUIZ:
       return setupQuiz(action.payload);
-    case 'ANSWER_QUESTION':
+    case Do.ANSWER_QUESTION:
       return {
         ...state, qIndex: action.payload.qIndex, score: (state.score + action.payload.value)
       };

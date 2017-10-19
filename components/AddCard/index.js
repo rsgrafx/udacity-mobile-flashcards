@@ -41,6 +41,19 @@ class AddCard extends Component {
     this.setState({ [key]: value });
   }
 
+  Input = (label, key, placeholder) => (
+    <View style={{ flex: 1, padding: 10 }}>
+      <Text style={[styles.inputLabel, { fontWeight: 'bold' }]}>{label}</Text>
+      <View style={styles.textBox} >
+        <TextInput
+          placeholder={placeholder}
+          onChangeText={(value) => { this.update(key, value); }}
+          style={styles.textBoxInput}
+        />
+      </View>
+    </View>
+  )
+
   render() {
     const { flexCenter } = styles;
     return (
@@ -54,36 +67,10 @@ class AddCard extends Component {
             <Text style={[styles.headerLabel, { fontSize: 15 }]}>Add New Question to Deck:</Text>
             <Text style={styles.headerLabel}>{this.props.navigation.state.params.name}</Text>
           </View>
-          <View style={{ flex: 1, padding: 10 }}>
-            <Text style={[styles.inputLabel, { fontWeight: 'bold' }]}>Your Question:</Text>
-            <View style={styles.textBox} >
-              <TextInput
-                placeholder={'Enter Question'}
-                onChangeText={(value) => {this.update('title', value)}}
-                style={styles.textBoxInput}
-                value={this.state.AnswerA}
-              />
-            </View>
-          </View>
+          { this.Input('Your Question:', 'title', 'Enter Question') }
           <View style={styles.answers}>
-            <Text style={styles.inputLabel}>Correct Answer:</Text>
-            <View style={styles.textBox}>
-              <TextInput
-                placeholder={'Enter Correct Answer here.'}
-                style={styles.textBoxInput}
-                onChangeText={(value) => {this.update('answerA', value)}}
-                value={this.state.AnswerA}
-              />
-            </View>
-            <Text style={styles.inputLabel}>Second Answer:.</Text>
-            <View style={styles.textBox}>
-              <TextInput
-                placeholder={'Enter Wrong Answer here.'}
-                onChangeText={(value) => { this.update('answerB', value); }}
-                style={styles.textBoxInput}
-                value={this.state.answerB}
-              />
-            </View>
+            { this.Input('First Answer', 'answerA', 'Enter Correct Answer here.') }
+            { this.Input('Second Answer', 'answerB', 'Enter Wrong Answer here.') }
           </View>
           <View style={{ flex: 1, padding: 10 }}>
             <TouchableOpacity

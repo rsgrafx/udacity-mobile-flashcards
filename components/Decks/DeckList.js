@@ -10,7 +10,7 @@ const DeckList = ({ items, actionOnItem }) => {
       renderItem={actionOnItem}
     />
   );
-}
+};
 
 const mapStateToProps = state => (
   { items: state.decks }

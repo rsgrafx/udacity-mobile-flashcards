@@ -4,8 +4,7 @@ const borderline = Platform.OS === 'ios'
 ? { borderBottomWidth: 1,
    borderBottomColor: 'grey'
   }
-: {}
-
+: {};
 
 const styles = StyleSheet.create({
   inputLabel: {
