@@ -14,7 +14,6 @@ This application is built with React Native - and Expo.
 #### Packing and Deploying to AppStore.
 
 
-
 Goal of Application
 -------
 
@@ -24,6 +23,12 @@ A User can add new Cards to A Deck.
 
 As a user is taking a quiz - When user attemps to answer a question the card is flipped to reveal that the user is correct or what the currect answer is.
 
+
+Platforms Tested on:
+--------------------
+
+- iOS - Emulator / iOS 6, 7
+- Android Emulator / Nexus 6
 
 
 Dependencies
