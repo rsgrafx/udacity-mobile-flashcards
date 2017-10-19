@@ -52,12 +52,11 @@ const MainNavigation = StackNavigator({
     path: 'home',
     navigationOptions: ({ navigation }) => ({
       title: 'Brains++',
-      headerRight: <TouchableWithoutFeedback
-                      onPress={() => (navigation.navigate('AddDeck'))}
-                    >
+      headerRight: <TouchableWithoutFeedback onPress={() => (navigation.navigate('AddDeck'))}>
                       <View
-                      style={{width: 40, height: 30}}
-                      accesibilityLabel="Add new Quiz Deck">
+                        style={{ width: 40, height: 30 }}
+                        accesibilityLabel="Add new Quiz Deck"
+                      >
                         <Ionicons name='ios-add-circle' size={30} color={'#2980b9'} />
                       </View>
                     </TouchableWithoutFeedback>
@@ -65,19 +64,19 @@ const MainNavigation = StackNavigator({
   },
   Quiz: {
     screen: Deck,
-    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name}`})
+    navigationOptions: ({ navigation }) => ({ title: `${navigation.state.params.name}` })
   },
   StartQuiz: {
     screen: StartQuiz,
-    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name}`})
+    navigationOptions: ({ navigation }) => ({ title: `${navigation.state.params.name}` })
   },
   AddCard: {
     screen: AddCard,
-    navigationOptions: ({ navigation }) => ({ title: `${ navigation.state.params.name} Deck`})
+    navigationOptions: ({ navigation }) => ({ title: `${navigation.state.params.name} Deck` })
   },
   AddDeck: {
     screen: AddDeck,
-    navigationOptions: ({ navigation }) => ({ title: `New Deck`})
+    navigationOptions: () => ({ title: 'New Deck' })
   }
 },
 {

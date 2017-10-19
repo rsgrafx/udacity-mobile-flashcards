@@ -43,7 +43,7 @@ export const updateDecks = (decks) => {
     type: Do.DECKS,
     payload: decks
   });
-}
+};
 
 export const addDeck = (deck) => {
   store.dispatch({
